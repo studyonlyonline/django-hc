@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schemes List</title>
+</head>
+<body>
+    <ul>
+        {% for scheme in schemes_list %}
+            <li>{{ scheme.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
