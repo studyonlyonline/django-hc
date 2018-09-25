@@ -1,14 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Schemes List</title>
-</head>
-<body>
-    <ul>
-        {% for scheme in schemes_list %}
-            <li>{{ scheme.title }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %}
+    Schemes | Harbacore
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+        <div class="container">
+
+            <div class="row">
+                <!--schemes list-->
+                <div class="col-sm-3 col-md-3 ">
+                    <ul class="list-group">
+                        {% for scheme_item in schemes_list %}
+                            <li class="list-group-item "> {{ scheme_item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!--display current active item-->
+                <div class="col-sm-9 col-md-9">
+                    <p>{{ selected_scheme.title }}</p>
+                    <img src="{{ selected_scheme.image_url }}" />
+                    <p>
+                        <ul>
+                            {% for t_c in terms_and_conditions %}
+                                <li> {{ t_c }} </li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock content %}

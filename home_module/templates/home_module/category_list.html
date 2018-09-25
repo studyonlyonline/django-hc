@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+    {{ category_name }} | Harbacore
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+        <div class="container">
+
+            <div class="row">
+                <!--schemes list-->
+                <div class="col-sm-3 col-md-3 ">
+                    <ul class="list-group">
+                        {% for category in categories %}
+                            <li class="list-group-item "> {{ category.category_name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!--display current active item-->
+                <div class="col-sm-9 col-md-9">
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-md-3">
+                                <a href="{% static 'images/product.product_image_url' %}"></a>
+                                <p>{{ product.product_name }}</p>
+                                <p>{{ product.product_mrp }}</p>
+                                <p>{{ product.product_discount }}</p>
+                                <p>{{ product.product_features }}</p>
+
+                                <!--{{ product }}-->
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock content %}
