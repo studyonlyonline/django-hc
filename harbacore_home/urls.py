@@ -22,6 +22,8 @@ app_name = 'parent_module'
 
 urlpatterns = [
     path('index/', views.contact_form_view, name="index_page"),
+    path('',views.HomeView.as_view(), name="home"),
+    path('hello/', views.HelloWorldView.as_view(), name="hello"),
     path('home/', include('home_module.urls', namespace='home_module')),
     path('admin/', admin.site.urls),
 ]

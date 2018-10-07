@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 from django.http import HttpResponse
 from . import forms
 
@@ -34,3 +34,15 @@ def contact_form_view(request):
     }
     return render(request=request, template_name='contact_form.html', context=context)
 
+class HelloWorldView(View):
+    def get(self, request):
+        return HttpResponse("Hello world")
+
+class HomeView(TemplateView):
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['games'] = 6
+        print ("Context  ",context)
+        return context
