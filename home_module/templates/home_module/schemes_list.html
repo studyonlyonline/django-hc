@@ -15,16 +15,23 @@
                 <div class="col-sm-3 col-md-3 ">
                     <ul class="list-group">
                         {% for scheme_item in schemes_list %}
-                            <li class="list-group-item "> {{ scheme_item }}</li>
+                            <li class="list-group-item ">
+                                <a href="{% url 'home_module:schemes_detail_page' scheme_id=scheme_item.pk %}">{{ scheme_item }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
 
                 <!--display current active item-->
                 <div class="col-sm-9 col-md-9">
-                    <p>{{ selected_scheme.title }}</p>
-                    <img src="{{ selected_scheme.image_url }}" />
+                    <h1>{{ selected_scheme.title }}</h1>
                     <p>
+                        <div class="row">
+                                <img class="img-fluid" src="{{ selected_scheme.image_url }}" />
+                        </div>
+                    </p>
+                    <p>
+                        <h4>Terms and Conditions:</h4>
                         <ul>
                             {% for t_c in terms_and_conditions %}
                                 <li> {{ t_c }} </li>

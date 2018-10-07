@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from . import views
+
+app_name = 'parent_module'
 
 urlpatterns = [
-    path('home/', include('home_module.urls')),
+    path('index/', views.contact_form_view, name="index_page"),
+    path('home/', include('home_module.urls', namespace='home_module')),
     path('admin/', admin.site.urls),
 ]
 

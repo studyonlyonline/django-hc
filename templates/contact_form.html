@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+    Contact Form
+{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_ul}}
+            <input type="Submit">
+        </form>
+    </div>
+{% endblock %}

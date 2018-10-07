@@ -1,47 +1,68 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
 
+<!--addig the css of specific app-->
+{% block static %}
+<link rel="stylesheet" href="{% static 'home_module/css/home_module_base.css' %}" >
+{% endblock %}
+
 {% block title %}
-    {{ category_name }} | Harbacore
+{{ category_name }} | Harbacore
 {% endblock title %}
 
 {% block content %}
 
-    <div class="container-fluid">
+<div class="container-fluid">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="row">
-                <!--schemes list-->
-                <div class="col-sm-3 col-md-3 ">
-                    <ul class="list-group">
-                        {% for category in categories %}
-                            <li class="list-group-item "> {{ category.category_name }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        <div class="row">
+            <!--schemes list-->
+            <div class="col-sm-3 col-md-3 category">
+                <ul class="list-group">
+                    {% for category in categories %}
+                    <li class="list-group-item ">
+                        <a href="{% url 'home_module:product_list_page' category_id=category.pk %}"> {{ category.category_name }} </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-                <!--display current active item-->
-                <div class="col-sm-9 col-md-9">
-                    <div class="row">
-                        {% for product in products %}
-                            <div class="col-md-3">
-                                <a href="{% static 'images/product.product_image_url' %}"></a>
-                                <p>{{ product.product_name }}</p>
-                                <p>{{ product.product_mrp }}</p>
-                                <p>{{ product.product_discount }}</p>
-                                <p>{{ product.product_features }}</p>
+            <!--display current active item-->
+            <div class="col-sm-9 col-md-9">
+                <div class="row">
+                    {% for item in data %}
+                    <div class="col-md-3">
+                        <div class="card" >
+                            <img class="card-img-top img-fluid" src="{% static item.product.product_image_url %}" alt="{{ item.product.product_name}}" />
+                            <h4 class="card-title">{{ item.product.product_name }}</h4>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <td class="strike-through-mrp-price">{{item.product.product_mrp}}</td>
+                                            <td>
+                                                <span class="badge badge-info">{{item.product.product_discount}}%</span>
+                                            </td>
+                                        </tr>
 
-                                <!--{{ product }}-->
+                                        <tr>
+                                            <td><b>{{item.final_price}}</b></td>
+                                        </tr>
+                                    </table>
+                                </p>
+                                <a href="#" class="btn btn-primary">See More</a>
                             </div>
-                        {% endfor %}
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-
             </div>
 
         </div>
 
     </div>
+
+</div>
 
 {% endblock content %}
