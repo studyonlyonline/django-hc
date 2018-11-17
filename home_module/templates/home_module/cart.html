@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+Cart | Harbacore
+{% endblock title %}
+
+{% block content %}
+
+{% if is_cart_empty %}
+    <h1>Sorry the cart is empty.</h1>
+{% else %}
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>MRP</th>
+                <th>Discount</th>
+                <th>Final Price per Piece</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.product_mrp }}</td>
+                    <td>{{ item.product_discount }}</td>
+                    <td>{{ item.product_final_price }}</td>
+                    <td>
+                        <form method="post" action="{% url 'home_module:add_to_cart_session' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{item.product_id}}" name="item_id" />
+                            <input type="number" value="{{ item.product_quantity }}" name="item_quantity" />
+                            <!--<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>-->
+                            <input type="submit" value="update">
+                        </form>
+                    </td>
+
+                    <td>{{ item.final_quantity_amount }}</td>
+
+                    <td>
+                        <form method="post" action="{% url 'home_module:add_to_cart_session' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{item.product_id}}" name="item_id" />
+                            <input type="hidden" value="-1" name="item_quantity" />
+                            <!--<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>-->
+                            <input type="submit" value="delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor%}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Rs {{ total_amount }} </b></td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endif %}
+
+<div>
+
+</div>
+
+{% endblock %}

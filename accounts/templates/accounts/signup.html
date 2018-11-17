@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+SignUp | Harbacore
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Signup</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-default" type="submit" value="signup">
+        </form>
+
+    </div>
+
+{% endblock %}

@@ -23,6 +23,8 @@ app_name = 'parent_module'
 urlpatterns = [
     path('index/', views.contact_form_view, name="index_page"),
     path('home/', include('home_module.urls', namespace='home_module')),
+    path('accounts/', include('accounts.urls', namespace="accounts")),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
 

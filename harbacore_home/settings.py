@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
     'home_module'
 ]
 
@@ -126,3 +127,11 @@ STATICFILES_DIRS =(
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'contacts')
+
+# redirect user to new page
+LOGIN_REDIRECT_URL = 'home_module:schemes_default_page'
+
+#new user model
+AUTH_USER_MODEL = 'accounts.User'
+
+SESSION_SAVE_EVERY_REQUEST = True
