@@ -14,4 +14,5 @@ urlpatterns = [
     path('cartAdd/', views.AddToCartSessionView.as_view(), name='add_to_cart_session'),
     path('cart/', views.CartView.as_view(), name='cart'),
     path('updateCartQuantity/<str:id>/<int:quantity>', views.UpdateCartQuantity.as_view(), name="update_cart_quantity"),
+    path('submitOrder/', views.SubmitOrderView.as_view(), name="submit_order")
 ]

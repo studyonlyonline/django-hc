@@ -56,7 +56,10 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+                            <a class="dropdown-item" href="{% url 'accounts:create_profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'accounts:dealer_details' %}">Dealer</a>
                         </div>
+
                     </li>
                 </ul>
                 {% else %}

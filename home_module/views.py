@@ -162,10 +162,10 @@ class CartView(View):
             cart = request.session.get('cart', {})
             print ("Cart in Cart View" , cart)
             is_cart_empty = True
+            total_amount = 0
             data = []
             if len(cart) > 0:
                 is_cart_empty = False
-                total_amount = 0
                 for item_id, item_quantity in cart.items():
                     print ("type is ", type(item_id))
                     item_id = int(item_id)
@@ -205,7 +205,6 @@ class UpdateCartQuantity(View):
         print("Cart dictionary after utilityFunction called ", request.session.get('cart', {}))
         return HttpResponse("yes")
 
-
 class TestListView(LoginRequiredMixin,View):
 
     def get(self, request, *args, **kwargs):
@@ -217,6 +216,8 @@ class TestListView(LoginRequiredMixin,View):
 class SubmitOrderView(LoginRequiredMixin,View):
 
     def get(self,request):
+        print ("inside SubmitOrder view")
+
         return HttpResponse("Order submitted")
 
 

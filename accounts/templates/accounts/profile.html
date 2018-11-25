@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>
+            {% if form.instance.contact_no %}
+                Update Profile
+            {% else %}
+                Create Profile
+            {% endif %}
+        </h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if form.instance.contact_no %}
+                <input class="btn btn-default" type="submit" value="Update profile">
+            {% else %}
+                <input class="btn btn-default" type="submit" value="Create Profile">
+            {% endif %}
+        </form>
+
+    </div>
+
+{% endblock %}

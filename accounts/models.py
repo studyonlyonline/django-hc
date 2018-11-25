@@ -50,6 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_dealer = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -64,3 +65,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_long_name(self):
         return "{} (@{})".format(self.display_name, self.username)
+
+class Profile(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    contact_no = models.IntegerField(blank=False)
+    delivery_address = models.TextField(blank = False)
+    apply_for_dealership = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username + " " + str(self.contact_no)
+
+class Dealer(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    gstin = models.CharField(blank=True, max_length=15)
+    company_name = models.TextField(blank=False)
