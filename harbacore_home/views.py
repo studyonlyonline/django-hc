@@ -7,6 +7,12 @@ from django.views.generic import View
 from django.http import HttpResponse
 from . import forms
 
+class index(View):
+
+    def get(self, request,*args, **kwargs):
+        context = {}
+        return render(request=request, template_name='index.html', context=context)
+
 def send_contact_lead(form_data):
     response = send_mail(
         subject="Contact form".format(form_data['name']),

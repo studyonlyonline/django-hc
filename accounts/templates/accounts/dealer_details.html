@@ -14,7 +14,8 @@
         </h1>
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% include '../includes/bootstrap4_general_form.html' with form=form %}
+
             {% if form.instance.gstin %}
                 <input class="btn btn-default" type="submit" value="Update Details">
             {% else %}
@@ -24,7 +25,6 @@
 
         {% else %}
             <h2>Sorry You are not a dealer, Apply for dealership in Profile section</h2>
-
         {% endif %}
 
     </div>

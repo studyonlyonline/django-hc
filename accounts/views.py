@@ -42,8 +42,10 @@ class CreateProfile(LoginRequiredMixin,View):
         try:
             data = Profile.objects.get(user = request.user)
             form = forms.ProfileForm(instance=data)
+            print("in profiel get try")
         except Profile.DoesNotExist:
             form = forms.ProfileForm()
+            print("in profiel get except")
         return render(request=request, template_name='accounts/profile.html', context={'form':form})
 
     def post(self, request, *args, **kwargs):
@@ -56,6 +58,7 @@ class CreateProfile(LoginRequiredMixin,View):
                 messages.add_message(request, messages.SUCCESS, "Updated Profile")
             else:
                 messages.add_message(request, messages.SUCCESS, "Profile Update failed")
+            print("update profile")
 
         except Profile.DoesNotExist:
             form = forms.ProfileForm(data=request.POST)
@@ -64,10 +67,13 @@ class CreateProfile(LoginRequiredMixin,View):
                 if request.user.is_authenticated:
                     profile.user = request.user
                     profile.save()
+                    print("profile saved")
                     messages.add_message(request, messages.SUCCESS, "Profile created")
                 elif request.user.is_anonymous:
                     messages.add_message(request, messages.SUCCESS, "Profile failed")
-
+            else:
+                messages.add_message(request ,messages.SUCCESS, "Form invalid")
+                print("Create profile")
         return redirect(reverse_lazy('home_module:schemes_default_page'))
 
 class DealerDetails(LoginRequiredMixin,View):

@@ -10,16 +10,28 @@
                 Create Profile
             {% endif %}
         </h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {% if form.instance.contact_no %}
-                <input class="btn btn-default" type="submit" value="Update profile">
-            {% else %}
-                <input class="btn btn-default" type="submit" value="Create Profile">
-            {% endif %}
-        </form>
+        <!--<form method="POST">-->
+            <!--{% csrf_token %}-->
+            <!--{{ form.as_p }}-->
+            <!--{% if form.instance.contact_no %}-->
+                <!--<input class="btn btn-default" type="submit" value="Update profile">-->
+            <!--{% else %}-->
+                <!--<input class="btn btn-default" type="submit" value="Create Profile">-->
+            <!--{% endif %}-->
+        <!--</form>-->
 
+        <form method="post" novalidate>
+                {% csrf_token %}
+                {% include '../includes/bootstrap4_general_form.html' with form=form %}
+                {% if form.instance.contact_no %}
+                <!--<input class="btn btn-default" type="submit" value="Update profile">-->
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+                {% else %}
+                <!--<input class="btn btn-default" type="submit" value="Create Profile">-->
+
+                <button type="submit" class="btn btn-primary">Create Profile</button>
+                {% endif %}
+        </form>
     </div>
 
 {% endblock %}
