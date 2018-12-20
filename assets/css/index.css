@@ -1,0 +1,70 @@
+.category-div{
+    margin-top:-50px;
+    background-color : #dcd9d936;
+
+}
+
+.get-border {
+  /*border : 1px solid black ;*/
+  /*text-align: center;*/
+  /*margin-top: 50%;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.get-border figure img {
+	width: 30%;
+	height: 13%;
+
+}
+
+.carousal-image-resize div img{
+    width: 100%;
+	height: 50%;
+}
+
+.carousal-image-resize {
+    margin-top: 50px;
+}
+
+.logo-small {
+    color: #f4511e;
+    font-size: 50px;
+}
+
+.glyph-size {
+    width:56px;
+    height:56px;
+    fill : red;
+}
+
+.slide-color {
+    color: red;
+}
+
+.customer-speak{
+    margin-top:20px;
+    padding-top:3px;
+    padding-bottom: 15px;
+    background-color : #dcd9d996;
+}
+
+.carousel-control-prev , carousel-control-next {
+    color: #f4511e;
+
+}
+
+.glyph-size-contact {
+    width:16px;
+    height:16px;
+}
+
+.red-line {
+    border-bottom : 2px solid red;
+    width :5%;
+    text-align:center;
+    align-items :center;
+}
+

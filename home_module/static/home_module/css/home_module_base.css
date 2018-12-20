@@ -1,3 +1,18 @@
 .strike-through-mrp-price {
     text-decoration : line-through;
 }
+
+.product-img {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+}
+
+.title-from-image {
+    margin-top: 10px;
+    text-align : center
+}
+
+.dull {
+    color: #8a8a80;
+}

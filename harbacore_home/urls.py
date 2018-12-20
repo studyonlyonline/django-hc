@@ -21,7 +21,8 @@ from . import views
 app_name = 'parent_module'
 
 urlpatterns = [
-    path('index/', views.contact_form_view, name="index_page"),
+    path('index/', views.Index.as_view(), name="index_page"),
+    path('contact-form/', views.contact_form_view, name="contact_form"),
     path('home/', include('home_module.urls', namespace='home_module')),
     path('accounts/', include('accounts.urls', namespace="accounts")),
     path('accounts/', include('django.contrib.auth.urls')),

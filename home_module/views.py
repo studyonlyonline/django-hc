@@ -85,7 +85,7 @@ class ProductListView(View):
         context = {
             'categories': categories,
             'data'  : processed_products_data,
-            'category_name' : category_name,
+            'category_name' : category_name
         }
 
         return render(request=request, template_name='home_module/category_list.html', context=context)
