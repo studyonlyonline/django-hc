@@ -1,0 +1,3 @@
+email : admin@harbacore.com
+username : admin
+password: welcome123$

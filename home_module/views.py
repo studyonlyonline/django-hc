@@ -9,6 +9,9 @@ from harbacore_home import UtitlityFunctions
 from django.views import View, generic
 import json
 
+# Constants file
+from . import Constants
+
 def index(request):
     if request.session.get('cart') is not None:
         print ("Cart in index page" ,request.session.get('cart'))
@@ -163,6 +166,7 @@ class CartView(View):
             print ("Cart in Cart View" , cart)
             is_cart_empty = True
             total_amount = 0
+            tax = 0
             data = []
             if len(cart) > 0:
                 is_cart_empty = False
@@ -182,13 +186,17 @@ class CartView(View):
                     temp['product_mrp'] = product.product_mrp
                     temp['product_discount'] = product.product_discount
                     temp['final_quantity_amount'] = item_quantity * temp['product_final_price']
-                    total_amount = total_amount +  temp['final_quantity_amount'];
+                    total_amount = total_amount + temp['final_quantity_amount']
                     data.append(temp)
 
+            tax = (Constants.ELECTRICAL_PRODUCTS_TAX * total_amount) / 100
+            payable_amount = tax + total_amount
             context = {
                 'data': data,
                 'is_cart_empty': is_cart_empty,
-                'total_amount' : total_amount
+                'total_amount' : total_amount,
+                'tax' : tax,
+                'payable_amount' : payable_amount
             }
             print ("data ",data)
             return render(request=request, template_name='home_module/cart.html', context=context)

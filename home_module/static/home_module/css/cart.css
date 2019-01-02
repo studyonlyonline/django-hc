@@ -1,0 +1,26 @@
+.glyph-size-delete{
+    width:10px;
+    height:10px;
+}
+
+.dull {
+    color: #8a8a80;
+    padding: 0;
+    line-height:0;
+}
+
+.arrange-right {
+    text-align : right;
+}
+
+.payment-summary {
+    border : 1px solid black ;
+}
+
+.shift-left {
+    float : left;
+}
+
+.shift-right{
+    float : right;
+}

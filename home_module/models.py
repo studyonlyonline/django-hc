@@ -21,7 +21,7 @@ class Category(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.category_name + " " + self.seo_name
+        return self.category_name + " - " + self.seo_name + " - " + str(self.id)
 
 class Products(models.Model):
     product_category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
@@ -36,6 +36,6 @@ class Products(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.product_name + " " + str(self.product_quantity)
+        return self.product_name + " - qty ( " + str(self.product_quantity) + ") - cat (" + str(self.product_category.id) + ")"
 
 

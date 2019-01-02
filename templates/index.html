@@ -37,7 +37,7 @@
 
         <div class="col-md-2 col-sm-4 col-6 get-border">
             <figure>
-                <a href=""> <img src="{% static 'images/fans.svg' %}" alt="fans"></a>
+                <a href="{% url 'home_module:product_list_page' category_id=5 %}"> <img src="{% static 'images/fans.svg' %}" alt="fans"></a>
                 <figcaption>Fans</figcaption>
             </figure>
         </div>
@@ -59,13 +59,14 @@
         <div class="col-md-2 col-sm-4 col-6 get-border">
             <figure>
                 <a href=""> <img src="{% static 'images/heater.svg' %}" alt="wires"></a>
-                <figcaption>Air Conditionar</figcaption>
+                <figcaption>Water Geyser</figcaption>
             </figure>
         </div>
 
     </div>
 
 
+    <!--heading for carousal of schemes offers-->
     <div class="row" style="margin-top:50px">
         <div class="col-md-12">
         <h3 style="text-align:center">Sale !!!! Fan's lowest Prices, last date 25h December</h3>
@@ -187,10 +188,19 @@
 
         <div class="row">
             <div class="col-sm-5">
+                <div>
                 <p><b>Contact us and we'll get back to you within 24 hours.</b></p>
                 <p><img class="glyph-size-contact" src="{% static 'images/si-glyph-pin-map.svg' %}" /> &nbsp  Kanpur , India</p>
                 <p><img class="glyph-size-contact" src="{% static 'images/si-glyph-smartphone.svg' %}"/> &nbsp +91 9415302372</p>
                 <p><img class="glyph-size-contact" src="{% static 'images/si-glyph-mail.svg' %}" />  &nbsp harbacore@gmail.com</p>
+                </div>
+                <br>
+
+                <!--links to different pages-->
+                <div>
+
+                </div>
+
             </div>
 
             <div class="col-sm-7 slideanim embed-responsive embed-responsive embed-responsive-4by3">

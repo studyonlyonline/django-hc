@@ -5,64 +5,124 @@
 Cart | Harbacore
 {% endblock title %}
 
+<!--static block-->
+{% block static %}
+    <link rel="stylesheet" href="{% static 'home_module/css/cart.css' %}" >
+{% endblock %}
+
 {% block content %}
 
 {% if is_cart_empty %}
     <h1>Sorry the cart is empty.</h1>
 {% else %}
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>MRP</th>
-                <th>Discount</th>
-                <th>Final Price per Piece</th>
-                <th>Quantity</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in data %}
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>{{ item.product_name }}</td>
-                    <td>{{ item.product_mrp }}</td>
-                    <td>{{ item.product_discount }}</td>
-                    <td>{{ item.product_final_price }}</td>
-                    <td>
-                        <form method="post" action="{% url 'home_module:add_to_cart_session' %}">
-                            {% csrf_token %}
-                            <input type="hidden" value="{{item.product_id}}" name="item_id" />
-                            <input type="number" value="{{ item.product_quantity }}" name="item_quantity" />
-                            <!--<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>-->
-                            <input type="submit" value="update">
-                        </form>
-                    </td>
-
-                    <td>{{ item.final_quantity_amount }}</td>
-
-                    <td>
-                        <form method="post" action="{% url 'home_module:add_to_cart_session' %}">
-                            {% csrf_token %}
-                            <input type="hidden" value="{{item.product_id}}" name="item_id" />
-                            <input type="hidden" value="-1" name="item_quantity" />
-                            <!--<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>-->
-                            <input type="submit" value="delete">
-                        </form>
-                    </td>
+                    <th>Name</th>
+                    <!--<th>MRP</th>-->
+                    <!--<th>Discount</th>-->
+                    <!--<th>Final Price per Piece</th>-->
+                    <th>Quantity</th>
+                    <th>Amount</th>
                 </tr>
-            {% endfor%}
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><b>Rs {{ total_amount }} </b></td>
-            </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>
+                            <p>{{ item.product_name }} </p>
+                            <p class="card-text">
+                                ₹<b>{{item.product_final_price}}</b>
+                                &nbsp
+                                <del class="dull">{{item.product_mrp}}</del>
+                                &nbsp
+                                <span class="badge badge-info">{{item.product_discount}}% off</span>
+                            </p>
 
+                            <form method="post" action="{% url 'home_module:add_to_cart_session' %}">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{item.product_id}}" name="item_id" />
+                                <input type="hidden" value="-1" name="item_quantity" />
+                                <!--<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>-->
+                                <!--<input type="submit" value="delete">-->
+                                <button type="submit" class="btn btn-link dull" >
+                                    <img class="glyph-size-delete" src="{% static 'images/si-glyph-delete.svg' %}" />
+                                    Remove
+                                </button>
+                            </form>
+
+                        </td>
+                        <!--<td>{{ item.product_mrp }}</td>-->
+                        <!--<td>{{ item.product_discount }}</td>-->
+                        <!--<td>{{ item.product_final_price }}</td>-->
+                        <td>
+                            <form method="post" action="{% url 'home_module:add_to_cart_session' %}">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{item.product_id}}" name="item_id" />
+                                <input type="number" value="{{ item.product_quantity }}" name="item_quantity" />
+                                <!--<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>-->
+                                <input type="submit" value="update">
+                            </form>
+                        </td>
+
+                        <td>{{ item.final_quantity_amount }}</td>
+
+                        <!--<td>-->
+                            <!--<form method="post" action="{% url 'home_module:add_to_cart_session' %}">-->
+                                <!--{% csrf_token %}-->
+                                <!--<input type="hidden" value="{{item.product_id}}" name="item_id" />-->
+                                <!--<input type="hidden" value="-1" name="item_quantity" />-->
+                                <!--&lt;!&ndash;<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>&ndash;&gt;-->
+                                <!--<input type="submit" value="delete">-->
+                            <!--</form>-->
+                        <!--</td>-->
+                    </tr>
+                {% endfor%}
+                <tr>
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <!--<td></td>-->
+                    <td></td>
+                    <td></td>
+                    <td><b>Rs {{ total_amount }} </b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--payment summary-->
+    <div class="col-md-3 payment-summary">
+        <h6 class="arrange-right">Payment Summary</h6>
+        <table class="shift-right">
+            <tbody>
+                <tr>
+                    <td class="shift-left">Sub Total</td>
+                    <td class="shift-right">Rs {{ total_amount }}</td>
+                </tr>
+
+                <tr>
+                    <td>Delivery Charge</td>
+                    <td class="arrange-right">Free</td>
+                </tr>
+
+                <tr>
+                    <td>Taxes</td>
+                    <td class="arrange-right">Rs {{ tax }}</td>
+                </tr>
+
+                <tr>
+                    <td>Grand Total</td>
+                    <td class="arrange-right">Rs {{ payable_amount }}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
 {% endif %}
 
 <div>
