@@ -70,56 +70,38 @@ Cart | Harbacore
 
                         <td>{{ item.final_quantity_amount }}</td>
 
-                        <!--<td>-->
-                            <!--<form method="post" action="{% url 'home_module:add_to_cart_session' %}">-->
-                                <!--{% csrf_token %}-->
-                                <!--<input type="hidden" value="{{item.product_id}}" name="item_id" />-->
-                                <!--<input type="hidden" value="-1" name="item_quantity" />-->
-                                <!--&lt;!&ndash;<button onclick="test({{item.product_id}}, document.getElementById('product{{ item.product_id }}').value)">Update</button>&ndash;&gt;-->
-                                <!--<input type="submit" value="delete">-->
-                            <!--</form>-->
-                        <!--</td>-->
                     </tr>
                 {% endfor%}
-                <tr>
-                    <!--<td></td>-->
-                    <!--<td></td>-->
-                    <!--<td></td>-->
-                    <td></td>
-                    <td></td>
-                    <td><b>Rs {{ total_amount }} </b></td>
-                </tr>
             </tbody>
         </table>
     </div>
 
     <!--payment summary-->
     <div class="col-md-3 payment-summary">
-        <h6 class="arrange-right">Payment Summary</h6>
-        <table class="shift-right">
-            <tbody>
-                <tr>
-                    <td class="shift-left">Sub Total</td>
-                    <td class="shift-right">Rs {{ total_amount }}</td>
-                </tr>
+        <h6 style="margin-top:10px">Payment Summary</h6>
+        <div class="row">
+            <div class="col-md-5 view-size">Sub Total</div>
+            <div class="col-md-7 arrange-right view-size">₹{{ total_amount }}</div>
+        </div>
 
-                <tr>
-                    <td>Delivery Charge</td>
-                    <td class="arrange-right">Free</td>
-                </tr>
+        <div class="row">
+            <div class="col-md-5 view-size">Taxes</div>
+            <div class="col-md-7 arrange-right view-size">₹{{ tax }}</div>
+        </div>
 
-                <tr>
-                    <td>Taxes</td>
-                    <td class="arrange-right">Rs {{ tax }}</td>
-                </tr>
+        <div class="row">
+            <div class="col-md-5 view-size">Transportation</div>
+            <div class="col-md-7 arrange-right view-size frate-color">Free</div>
+        </div>
 
-                <tr>
-                    <td>Grand Total</td>
-                    <td class="arrange-right">Rs {{ payable_amount }}</td>
-                </tr>
 
-            </tbody>
-        </table>
+        <br>
+        <hr size="20">
+        <div class="row">
+            <div class="col-md-5 view-size"><b>Grand Total</b></div>
+            <div class="col-md-7 arrange-right view-size"><b>₹{{ payable_amount }}</b></div>
+        </div>
+
     </div>
 
 </div>
