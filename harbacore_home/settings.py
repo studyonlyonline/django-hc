@@ -25,7 +25,7 @@ SECRET_KEY = '+vny&s(jv1o^nj6-(l((yjz^)uaol7qoljb5_*(596ex_m2n5^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', '*']
 
 
 # Application definition
@@ -82,15 +82,25 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
 
+    #local
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'harbacore',
+            'NAME': 'harbacoredb',
             'USER': 'root',
-            'PASSWORD': '',
+            'PASSWORD': 'welcome123$',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
         }
 
+    #Production
+    # 'default': {
+    #          'ENGINE': 'django.db.backends.mysql',
+    #          'NAME': 'harbacoredb',
+    #          'USER': 'root',
+    #          'PASSWORD': 'samtron56v',
+    #          'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+    #          'PORT': '3306',
+    #      }
 }
 
 
