@@ -9,8 +9,14 @@ from harbacore_home import UtitlityFunctions
 from django.views import View, generic
 import json
 
+#imported python collections class
+from collections import defaultdict
+
 # Constants file
 from . import Constants
+
+
+####### Views ############
 
 def index(request):
     if request.session.get('cart') is not None:
@@ -81,10 +87,16 @@ class ProductListView(View):
         for product in products:
             temp = {}
             temp['product'] = product
+            # print ("variants ", product.mapped_variant.all(), " name ", product.product_name)
+            variant = defaultdict(list)
+            for data in product.mapped_variant.all():
+                variant[data.variant_name].append(data.variant_value)
+            # print ("variant " ,variant)
+            temp['variant'] = variant
             temp['final_price'] = product.product_mrp - 0.01*product.product_discount*product.product_mrp;
             processed_products_data.append(temp)
 
-        # print ("processed ", processed_products_data)
+        #print ("processed ", processed_products_data)
         context = {
             'categories': categories,
             'data'  : processed_products_data,
@@ -223,8 +235,12 @@ class TestListView(LoginRequiredMixin,View):
 
 class SubmitOrderView(LoginRequiredMixin,View):
 
-    def get(self,request):
+    def get(self,request, *args, **kwargs):
         print ("inside SubmitOrder view")
+        cart = request.session.get('cart', {})
+        print ("cart ", cart)
+
+
 
         return HttpResponse("Order submitted")
 

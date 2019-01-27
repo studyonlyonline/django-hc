@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 #schemes table for showing SCHEMES
 class Schemes(models.Model):
@@ -39,7 +40,7 @@ class Variants(models.Model):
 
 class Products(models.Model):
     product_category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
-    mapped_variant = models.ManyToManyField(Variants)
+    mapped_variant = models.ManyToManyField(Variants, blank=True)
     product_name  = models.TextField()
     product_seo_name = models.TextField(null=True)
     product_mrp = models.IntegerField(null=True)
@@ -53,5 +54,16 @@ class Products(models.Model):
     def __str__(self):
         return self.product_name + " - qty ( " + str(self.product_quantity) + ") - cat (" + str(self.product_category.id) + ")"
 
+
+class Orders(models.Model):
+    order_user = models.ForeignKey(User, on_delete = models.SET_NULL, blank = True, null =True)
+    order_summary = models.TextField()
+    order_completed = models.BooleanField(default = False)
+    order_comments = models.TextField()
+    order_date = models.DateTimeField()
+    order_completed_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.order_user.username + str(self.order_date) + str(self.order_completed)
 
 

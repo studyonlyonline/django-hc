@@ -83,24 +83,24 @@ DATABASES = {
     # }
 
     #local
-    'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'harbacoredb',
-            'USER': 'root',
-            'PASSWORD': 'welcome123$',
-            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-            'PORT': '3306',
-        }
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'NAME': 'harbacoredb',
+    #         'USER': 'root',
+    #         'PASSWORD': 'welcome123$',
+    #         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+    #         'PORT': '3306',
+    #     }
 
     #Production
-    # 'default': {
-    #          'ENGINE': 'django.db.backends.mysql',
-    #          'NAME': 'harbacoredb',
-    #          'USER': 'root',
-    #          'PASSWORD': 'samtron56v',
-    #          'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-    #          'PORT': '3306',
-    #      }
+    'default': {
+             'ENGINE': 'django.db.backends.mysql',
+             'NAME': 'harbacoredb',
+             'USER': 'root',
+             'PASSWORD': 'samtron56v',
+             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+             'PORT': '3306',
+         }
 }
 
 
